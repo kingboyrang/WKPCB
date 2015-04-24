@@ -1,0 +1,28 @@
+//
+//  WldhApp-Prefix.pch
+//  WldhMini
+//
+//  Created by mini1 on 14-5-28.
+//  Copyright (c) 2014年 Guoling. All rights reserved.
+//
+#ifndef __IPHONE_5_0
+#warning "This project uses features only available in iOS SDK 6.0 and later."
+#endif
+
+#ifdef __OBJC__
+
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import "UIColor+TPCategory.h"
+#import "UIImage+TPCategory.h"
+#import "UINavigationBar+TPCategory.h"
+#import "WKConfig.h"
+#import "SlideNavigationController.h"
+
+#ifndef __OPTIMIZE__
+#define NSLog(...) NSLog(__VA_ARGS__)
+#else
+#define NSLog(...) {}
+#endif
+
+#endif

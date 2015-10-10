@@ -35,11 +35,18 @@
     [super viewDidLoad];
     _curCategoryId=-1;
     
+    self.title=@"FPC";
+    
     UIButton *button  = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
     [button setImage:[UIImage imageNamed:@"top_navigation_infoicon.png"] forState:UIControlStateNormal];
     [button addTarget:self action:@selector(settingClick) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
     self.navigationItem.rightBarButtonItem=rightBarButtonItem;
+    
+    
+    UIView *footer=[[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 0)];
+    self.productTable.tableFooterView=footer;
+    //self.productTable
 
     /**
     UIButton *shareBtn=[UIButton buttonWithType:UIButtonTypeCustom];
@@ -70,6 +77,7 @@
 - (void)receiveCategoryFinishd:(NSNotification*)notification{
     PCBCategrory *mod=(PCBCategrory*)[notification object];
     if (mod.CategoryId!=_curCategoryId) {
+        self.title=mod.CategoryName;
         self.listData=[[FMDBManager shareInstance] GetCategoryDetailWithType:mod.CategoryId];
         
         [self.productTable reloadData];

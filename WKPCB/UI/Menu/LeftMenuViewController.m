@@ -180,8 +180,12 @@ NSString * const WTATableCellIdentifier = @"WTATableCellIdentifier";
     [[SlideNavigationController sharedInstance] toggleLeftMenu];
     
     PCBCategrory *entity=[self.dataRowSource objectAtIndex:indexPath.section];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"kNotificationCategoryChanged" object:entity];
-    
+    if (entity.hasChild) {
+        PCBCategrory *item=[entity.childs objectAtIndex:indexPath.row];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"kNotificationCategoryChanged" object:item];
+    }else{
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"kNotificationCategoryChanged" object:entity];
+    }
     //NSArray *arr=[[FMDBManager shareInstance] GetCategoryDetailWithType:entity.CategoryId];
     //NSLog(@"arr =%@",arr);
     

@@ -43,6 +43,9 @@
     UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
     self.navigationItem.rightBarButtonItem=rightBarButtonItem;
     
+    //返回事件
+    self.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:nil];
+    
     
     UIView *footer=[[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 0)];
     self.productTable.tableFooterView=footer;

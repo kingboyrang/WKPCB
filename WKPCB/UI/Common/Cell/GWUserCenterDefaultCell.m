@@ -21,7 +21,7 @@
          * 设置cell 圆角背景图
          */
         if ([[[UIDevice currentDevice] systemVersion] floatValue]>=7.0) {
-            self.cellBackImageView =[[GWBaseCellGroundView alloc] initWithFrame:CGRectMake(10.0f, 0.0f, 300.0f, 48.0f)];
+            self.cellBackImageView =[[GWBaseCellGroundView alloc] initWithFrame:CGRectMake(10.0f, 0.0f, [UIScreen mainScreen].bounds.size.width-20, 48.0f)];
             [self.contentView addSubview:self.cellBackImageView];
             [self.cellBackImageView mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.left.equalTo(self.mas_left).offset(10.0f);
@@ -30,7 +30,7 @@
                 //make.height.equalTo(48.0f);
             }];
         }else{
-            self.cellBackImageView =[[GWBaseCellGroundView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 300.0f, 48.0f)];
+            self.cellBackImageView =[[GWBaseCellGroundView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, [UIScreen mainScreen].bounds.size.width-20, 48.0f)];
             self.backgroundView =self.cellBackImageView;
         }
         
@@ -117,6 +117,13 @@
         [self.ucAccessoryView removeFromSuperview];
     }
      **/
+}
+
+- (void)layoutSubviews{
+    [super layoutSubviews];
+    
+    NSLog(@"cellBackImageView frame =%@",NSStringFromCGRect(self.cellBackImageView.frame));
+    NSLog(@"ucRightTextLabel frame =%@",NSStringFromCGRect(self.ucRightTextLabel.frame));
 }
 
 -(void)setAccessoryImage:(BOOL)accessoryImage{

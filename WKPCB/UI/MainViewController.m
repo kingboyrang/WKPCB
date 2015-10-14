@@ -13,6 +13,8 @@
 #import "PCBCategrory.h"
 #import "FMDBManager.h"
 #import "UIImageView+WebCache.h"
+#import "ProductDetailViewController.h"
+
 @interface MainViewController ()
 
 @end
@@ -121,6 +123,10 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    ProductDetailViewController *detail=[[ProductDetailViewController alloc] init];
+    detail.Entity=[self.listData objectAtIndex:indexPath.row];
+    [self.navigationController pushViewController:detail animated:YES];
 }
 #pragma mark - SlideNavigationController Methods -
 

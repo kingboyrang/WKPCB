@@ -170,6 +170,7 @@
 		3EFC361E1A8B60F600046FA8 /* cell_top@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EFC361A1A8B60F600046FA8 /* cell_top@2x.png */; };
 		3EFC361F1A8B60F600046FA8 /* cell_whole@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EFC361B1A8B60F600046FA8 /* cell_whole@2x.png */; };
 		3EFC36241A8B61CE00046FA8 /* WKTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EFC36231A8B61CE00046FA8 /* WKTableViewCell.m */; };
+		FF7DE4D61BCE37A200714B9A /* ProductDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF7DE4D41BCE37A200714B9A /* ProductDetailViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -414,6 +415,8 @@
 		3EFC361B1A8B60F600046FA8 /* cell_whole@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cell_whole@2x.png"; sourceTree = "<group>"; };
 		3EFC36221A8B61CE00046FA8 /* WKTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKTableViewCell.h; sourceTree = "<group>"; };
 		3EFC36231A8B61CE00046FA8 /* WKTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKTableViewCell.m; sourceTree = "<group>"; };
+		FF7DE4D31BCE37A200714B9A /* ProductDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductDetailViewController.h; sourceTree = "<group>"; };
+		FF7DE4D41BCE37A200714B9A /* ProductDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductDetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -701,6 +704,8 @@
 				3EB128EA1AE8AB100069150B /* ElectronicItemCell.h */,
 				3EB128EB1AE8AB100069150B /* ElectronicItemCell.m */,
 				3EB128EC1AE8AB100069150B /* ElectronicItemCell.xib */,
+				FF7DE4D31BCE37A200714B9A /* ProductDetailViewController.h */,
+				FF7DE4D41BCE37A200714B9A /* ProductDetailViewController.m */,
 			);
 			path = Product;
 			sourceTree = "<group>";
@@ -1215,6 +1220,7 @@
 				3EB5A7781AE9CF6E00C7091B /* UIButton+WebCache.m in Sources */,
 				3E114FB51A81D2C5008F7E9F /* AppDelegate.m in Sources */,
 				3EE3280C1A8CA12F00450827 /* UIAlertView+Blocks.m in Sources */,
+				FF7DE4D61BCE37A200714B9A /* ProductDetailViewController.m in Sources */,
 				3EFC36151A8B5A5400046FA8 /* ContactUSViewController.m in Sources */,
 				3EEB42301A88A89C0069F681 /* SlideNavigationContorllerAnimatorScale.m in Sources */,
 				3E3988471AA6E28700A1ECC5 /* Product.m in Sources */,

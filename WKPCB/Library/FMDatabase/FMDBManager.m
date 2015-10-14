@@ -126,7 +126,6 @@
                         id obj = [result objectForColumnName:aKey];
                         SEL sel=NSSelectorFromString(aKey);
                         if ([entity respondsToSelector:sel]) {
-                            NSLog(@"obj =%@",obj);
                             [entity setValue:obj forKey:aKey];
                         }
                     }

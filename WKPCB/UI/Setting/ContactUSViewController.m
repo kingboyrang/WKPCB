@@ -24,8 +24,7 @@
     self.title=@"关于我";
     
     self.contactTableView.backgroundView = [[UIView alloc] init];
-    self.contactTableView.backgroundColor = UIColorMakeRGB(243, 243, 243);
-    
+    self.contactTableView.backgroundColor =UIColorMakeRGB(243, 243, 243);
     //22.542264,114.085947
     
     NSMutableArray *sources=[NSMutableArray arrayWithCapacity:0];

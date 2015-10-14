@@ -16,4 +16,8 @@
 @property (nonatomic,strong) NSString *ImageURL;
 @property (nonatomic,strong) NSString *Description;
 @property (nonatomic,strong) NSString *Parameters;
+
+- (NSString*)GetProductModelDesc;
+- (NSString*)GetParametersDesc;
+
 @end

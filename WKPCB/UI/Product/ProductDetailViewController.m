@@ -8,6 +8,7 @@
 
 #import "ProductDetailViewController.h"
 #import "GWUserCenterDefaultCell.h"
+#import "UIImageView+WebCache.h"
 @interface ProductDetailViewController ()
 
 @end
@@ -20,6 +21,7 @@
     self.title=@"产品详情";
     
     CGRect r=self.view.bounds;
+    r.size.width=[UIScreen mainScreen].bounds.size.width;
     r.size.height-=[[[UIDevice currentDevice] systemVersion] floatValue]>=7.0?64.0:44.0;
     self.detailTable=[[UITableView alloc] initWithFrame:r style:UITableViewStyleGrouped];
     self.detailTable.delegate=self;
@@ -29,8 +31,13 @@
     self.detailTable.backgroundColor = UIColorMakeRGB(243, 243, 243);
     [self.view addSubview:self.detailTable];
     
-
+ 
+    UIImageView *productImageView=[[UIImageView alloc] initWithFrame:CGRectMake(10, 0, [UIScreen mainScreen].bounds.size.width-20, 300)];
+    [productImageView sd_setImageWithURL:[NSURL URLWithString:self.Entity.ImageURL]];
+    self.detailTable.tableHeaderView=productImageView;
+    
     [self buildModels];
+
 }
 
 - (void)buildModels{
@@ -57,7 +64,7 @@
     return [self.listData count];
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 50;
+    return 48;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -65,13 +72,11 @@
     GWUserCenterDefaultCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (cell == nil) {
         cell = [[GWUserCenterDefaultCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-        UIView *bgView=[[UIView alloc] init];
-        bgView.backgroundColor=[UIColor clearColor];
-        cell.backgroundView = bgView;
-        cell.backgroundColor = [UIColor clearColor];
-        cell.selectionStyle=UITableViewCellSelectionStyleNone;
+        cell.backgroundColor = [UIColor clearColor];        
+        cell.selectionStyle=UITableViewCellSelectionStyleGray;
+        [cell layoutUcSubDetailView];
     }
-    [cell layoutUcAccessoryView];
+    
     
     if (indexPath.row ==0) {
         cell.cellBackImageView.position =GWBaseCellGroundViewPositionTop;
@@ -84,6 +89,7 @@
     NSDictionary *dic=[self.listData objectAtIndex:indexPath.row];
     cell.ucTextLabel.text =[dic objectForKey:@"name"];
     cell.ucRightTextLabel.text=[dic objectForKey:@"value"];
+    [cell layoutUcSubDetailDisplay];
     return cell;
 }
 

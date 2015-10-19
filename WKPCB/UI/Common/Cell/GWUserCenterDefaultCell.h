@@ -22,4 +22,7 @@
 @property (assign, nonatomic) BOOL accessoryImage;
 
 - (void)layoutUcAccessoryView;
+
+- (void)layoutUcSubDetailView;
+- (void)layoutUcSubDetailDisplay;
 @end

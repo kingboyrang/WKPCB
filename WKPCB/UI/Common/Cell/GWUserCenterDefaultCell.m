@@ -90,40 +90,56 @@
     self.ucRightTextLabel.backgroundColor =[UIColor clearColor];
     self.ucRightTextLabel.adjustsFontSizeToFitWidth =YES;
     [self.ucAccessoryView addSubview:self.ucRightTextLabel];
-    /**
+}
+- (void)layoutUcSubDetailView{
+
+    CGRect ucRightFrame =CGRectMake(0.0f,17.0f,200, 21.0f);
+    self.ucRightTextLabel =[[UILabel alloc] initWithFrame:ucRightFrame];
+    self.ucRightTextLabel.font =[UIFont systemFontOfSize:14.0f];
+    self.ucRightTextLabel.textColor =[UIColor blackColor];
+    self.ucRightTextLabel.textAlignment =NSTextAlignmentLeft;
+    self.ucRightTextLabel.backgroundColor =[UIColor clearColor];
+    self.ucRightTextLabel.numberOfLines=0;
+    self.ucRightTextLabel.lineBreakMode=NSLineBreakByWordWrapping;
+    self.ucRightTextLabel.adjustsFontSizeToFitWidth =YES;
+    [self.cellBackImageView addSubview:self.ucRightTextLabel];
+}
+
+- (void)layoutUcSubDetailDisplay{
+
+    CGSize size=[self textSize:self.ucTextLabel.text withFont:self.ucTextLabel.font maxWith:[UIScreen mainScreen].bounds.size.width-40];
     
-    if (self.accessoryType == UITableViewCellAccessoryDisclosureIndicator) {
-        
-        CGRect ucAccessoryViewFrame =CGRectMake(0.0f, 0.0f,200.0f, 48.0f);
-        self.ucAccessoryView =[[UIView alloc] initWithFrame:ucAccessoryViewFrame];
-        self.ucAccessoryView.backgroundColor =[UIColor clearColor];
-        self.accessoryView =self.ucAccessoryView;
-        
-        UIImage *arrowImage =[UIImage imageNamed:@"maparrow"];
-        self.arrowImageView =[[UIImageView alloc] initWithImage:arrowImage];
-        self.arrowImageView.frame =CGRectMake(self.ucAccessoryView.frame.size.width -(arrowImage.size.width+10), 18.0f, arrowImage.size.width, arrowImage.size.height);
-        self.arrowImageView.backgroundColor =[UIColor clearColor];
-        [self.ucAccessoryView addSubview:self.arrowImageView];
-        
-        CGRect ucRightFrame =CGRectMake(0.0f, 13.0f,self.ucAccessoryView.frame.size.width-(self.arrowImageView.frame.size.width+10), 21.0f);
-        self.ucRightTextLabel =[[UILabel alloc] initWithFrame:ucRightFrame];
-        self.ucRightTextLabel.font =[UIFont systemFontOfSize:14.0f];
-        self.ucRightTextLabel.textColor =[UIColor lightGrayColor];
-        self.ucRightTextLabel.textAlignment =NSTextAlignmentRight;
-        self.ucRightTextLabel.backgroundColor =[UIColor clearColor];
-        self.ucRightTextLabel.adjustsFontSizeToFitWidth =YES;
-        [self.ucAccessoryView addSubview:self.ucRightTextLabel];
-    }else{
-        [self.ucAccessoryView removeFromSuperview];
+
+    CGRect r=self.ucRightTextLabel.frame;
+    r.origin.x=self.ucTextLabel.frame.origin.x+size.width+5;
+    r.size.width=[UIScreen mainScreen].bounds.size.width-r.origin.x-5;
+    
+    if ([self.ucRightTextLabel.text length]>0) {
+        size=[self textSize:self.ucRightTextLabel.text withFont:self.ucRightTextLabel.font maxWith:r.size.width];
+        r.size.height=size.height;
     }
-     **/
+    
+    self.ucRightTextLabel.frame=r;
+}
+
+- (CGSize)textSize:(NSString*)str withFont:(UIFont*)font maxWith:(CGFloat)width{
+    if (str&&[str length]>0) {
+        if ([[[UIDevice currentDevice] systemVersion] floatValue]>=7.0) {
+            NSDictionary *titleDict = [NSDictionary dictionaryWithObjectsAndKeys:
+                                       font, NSFontAttributeName,
+                                       nil];
+            return [str boundingRectWithSize:CGSizeMake(width, 21) options:0 attributes:titleDict context:nil].size;
+        }else{
+            return [str sizeWithFont:font constrainedToSize:CGSizeMake(width, CGFLOAT_MAX) lineBreakMode:NSLineBreakByWordWrapping];
+        }
+
+        
+    }
+    return CGSizeZero;
 }
 
 - (void)layoutSubviews{
     [super layoutSubviews];
-    
-    NSLog(@"cellBackImageView frame =%@",NSStringFromCGRect(self.cellBackImageView.frame));
-    NSLog(@"ucRightTextLabel frame =%@",NSStringFromCGRect(self.ucRightTextLabel.frame));
 }
 
 -(void)setAccessoryImage:(BOOL)accessoryImage{
